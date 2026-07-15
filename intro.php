@@ -113,7 +113,7 @@ function dump_wrapper($value)
             </li>
         </ol>
     </details>
-    <details open>
+    <details>
         <summary>Массивы</summary>
         <h2>Массивы</h2>
         <h3>Индексированные массивы:</h3>
