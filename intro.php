@@ -47,6 +47,7 @@ function dump_wrapper($value)
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title><?php echo $title; ?></title>
+     <link rel = "stylesheet" href="style.css"/>
 </head>
 <body>
     <h1><?= $title; //Строчный комментарий ?></h1>

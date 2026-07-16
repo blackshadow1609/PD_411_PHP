@@ -1,16 +1,11 @@
-<?php
-include 'data.php';
-?>
-<!DOCTYPE html>
+<?php include_once 'inc/header.php'; ?>
+<?php include_once 'data.php'; ?>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Project organisation</title>
-</head>
-<body>
-    <h1>Project organisation</h1>
+    <h1><?= $title; ?></h1>
     <h2><?= $message; ?></h2>
+    <h2>Magic const:</h2>
+    <h2>__DIR__: <?= __DIR__; ?></h2>
+    <h2>__FILE__: <?= __FILE__; ?></h2>
 
-</body>
-</html>
+
+<?php include_once 'inc/footer.php'; ?>
