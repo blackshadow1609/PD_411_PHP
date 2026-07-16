@@ -6,6 +6,7 @@
     <h2>Magic const:</h2>
     <h2>__DIR__: <?= __DIR__; ?></h2>
     <h2>__FILE__: <?= __FILE__; ?></h2>
+<h2><?= Message(); ?></h2>
 
 
 <?php include_once 'inc/footer.php'; ?>
