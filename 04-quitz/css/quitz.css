@@ -1,9 +1,35 @@
 ﻿form {
     width: 50%;
     display: flex;
-    border: solid 1px;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .quitz-content {
     text-align: left;
 }
+
+.submit-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+    .submit-button input[type="submit"] {
+        padding: 10px 30px;
+        background-color: darkcyan;
+        color: aliceblue;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 10px 10px 10px 3px rgba(0, 0, 0, 0.5);
+    }
+
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: darkcyan;
+    border-radius: 5px;
+}
+    .results p {
+        margin: 5px 0;
+        font-weight: bold;
+    }
