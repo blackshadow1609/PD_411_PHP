@@ -1,0 +1,10 @@
+﻿form {
+    width: 50%;
+    display: flex;
+    border: solid 1px;
+}
+.quitz-content
+{
+    text-align: left;
+
+}
