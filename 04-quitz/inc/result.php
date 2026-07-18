@@ -11,8 +11,8 @@ $user_answers = array_values($_POST);
 $score = 0;
 
 for ($i = 0; $i < count($user_answers); $i++) {
-    $answer = explode('_', $user_answers[$i])[1];
-    #$answer = $user_answers[$i][3];
+    #$answer = explode('_', $user_answers[$i])[1];
+    $answer = $user_answers[$i][strlen($user_answers[$i])-1];
     #$answer = $user_answers[$i][count($user_answers)-1];
     #echo $answer;
     if ($answer == $correct_answers[$i])
