@@ -1,5 +1,5 @@
 <?php
-    $title = 'Quitz PD_411';
+$title = 'Quitz PD_411';
 const ROOT = __DIR__ . '\\..';
 //const LOGIN_STYLE_PATH = "{$_SERVER['DOCUMENT_ROOT']}\\04-quitz\\css\\login.css";
 //const QUITZ_STYLE_PATH = "{$_SERVER['DOCUMENT_ROOT']}\\04-quitz\\css\\quitz.css";
@@ -30,4 +30,6 @@ $correct_answers =
     2,
     3
 ];
+
+
 ?>

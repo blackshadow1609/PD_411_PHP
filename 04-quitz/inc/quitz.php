@@ -2,12 +2,13 @@
 require_once __DIR__ . '/header.php';
 echo "Привет, {$_POST['first_name']} {$_POST['last_name']}, приятного прохождения!";
 echo '<pre>';
+
 print_r(ROOT . "\n");
 echo $_SERVER['DOCUMENT_ROOT'];
 echo '</pre>';
 ?>
 
-<form action="" method="post">
+<form action="result.php" method="post" class="form-quitz">
     <div class="quitz-content">
         <?php for ($i = 0; $i < count($questions); $i++): ?>
             <div class="question">
@@ -19,7 +20,10 @@ echo '</pre>';
             </div>
         <?php endfor ?>
     </div>
+
+    <div>
     <input type="submit" value="Отправить" />
+    </div>
 </form>
 
 <?php
