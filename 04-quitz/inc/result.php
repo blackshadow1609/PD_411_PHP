@@ -1,38 +1,84 @@
 <?php
-/*echo '<pre>';
-print_r($_POST);
-echo '</pre>';*/
-
 require_once __DIR__ . '/data.php';
 require_once __DIR__ . '/header.php';
+
+$possiblePaths = [
+    'F:/Users/Alina/source/repos/PD_411_PHP/PHPMailer/src/PHPMailer.php',
+    __DIR__ . '/../../PHPMailer/src/PHPMailer.php',
+    __DIR__ . '/../PHPMailer/src/PHPMailer.php',
+    __DIR__ . '/PHPMailer/src/PHPMailer.php',
+];
+
+$found = false;
+foreach ($possiblePaths as $path) {
+    if (file_exists($path)) {
+        $baseDir = dirname($path);
+        require_once $baseDir . '/PHPMailer.php';
+        require_once $baseDir . '/SMTP.php';
+        require_once $baseDir . '/Exception.php';
+        $found = true;
+        break;
+    }
+}
+
+if (!$found) {
+    die('PHPMailer не найден! Проверьте путь к библиотеке.');
+}
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 $asked_questions = array_keys($_POST);
 $user_answers = array_values($_POST);
 $score = 0;
 
+$correct_answers = [];
+for ($i = 0; $i < count($questions); $i++) {
+    $correct_answers[] = $i;
+}
+
 for ($i = 0; $i < count($user_answers); $i++) {
-    #$answer = explode('_', $user_answers[$i])[1];
-    $answer = $user_answers[$i][strlen($user_answers[$i])-1];
-    #$answer = $user_answers[$i][count($user_answers)-1];
-    #echo $answer;
-    if ($answer == $correct_answers[$i])
+    $answer_parts = explode('_', $user_answers[$i]);
+    $answer_index = (int) end($answer_parts);
+
+    if ($answer_index == $i)
         $score++;
 }
 
-$score_message = "Количество правильных ответов: {$score}.";
-$receipient = 'blackshadow1609@yandex.ru';
-$sender = 'PHPtest@PD411.academy';
+$score_message = "Количество правильных ответов: {$score} из " . count($questions);
 
-$headers[] = "MIME-Version 1.0:\r\n";
-$headers .= "Content-type: text/html; charset=utf-8\r\n";
-//$headers .= "To: {$receipient}\r\n";
-$headers .= "From: {$sender}\r\n";
+$mail = new PHPMailer(true);
 
+try {
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;
+    $mail->isSMTP();
+    $mail->Host = 'smtp.yandex.ru';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'blackshadow1609@yandex.ru';
+    $mail->Password = 'vrjdjxudayavwabu'; // Пароль приложения
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
 
-echo '<div class="result">';
-echo $score_message;
-echo mail($receipient, 'Результаты тестирования', $score_message, $headers);
+    $mail->setFrom('blackshadow1609@yandex.ru', 'PHP Test');
+    $mail->addAddress('www.blackshadow16@gmail.com');
 
-echo '</div>';
+    $mail->isHTML(true);
+    $mail->Subject = 'Результаты тестирования';
+    $mail->Body = $score_message;
+    $mail->AltBody = $score_message;
+
+    $mail->send();
+    echo '<div class="result">';
+    echo $score_message;
+    echo '<br> Письмо успешно отправлено!';
+    echo '</div>';
+} catch (Exception $e) {
+    echo '<div class="result">';
+    echo $score_message;
+    echo '<br> Письмо не отправлено. Ошибка: ' . $mail->ErrorInfo;
+    echo '</div>';
+}
+
 require_once __DIR__ . '/footer.php';
 ?>
