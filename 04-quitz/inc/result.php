@@ -18,8 +18,21 @@ for ($i = 0; $i < count($user_answers); $i++) {
     if ($answer == $correct_answers[$i])
         $score++;
 }
+
+$score_message = "Количество правильных ответов: {$score}.";
+$receipient = 'blackshadow1609@yandex.ru';
+$sender = 'PHPtest@PD411.academy';
+
+$headers[] = "MIME-Version 1.0:\r\n";
+$headers .= "Content-type: text/html; charset=utf-8\r\n";
+//$headers .= "To: {$receipient}\r\n";
+$headers .= "From: {$sender}\r\n";
+
+
 echo '<div class="result">';
-echo "Количество правильных ответов: {$score}.";
+echo $score_message;
+echo mail($receipient, 'Результаты тестирования', $score_message, $headers);
+
 echo '</div>';
 require_once __DIR__ . '/footer.php';
 ?>
