@@ -21,16 +21,21 @@ for ($i = 0; $i < count($user_answers); $i++) {
 
 $score_message = "Количество правильных ответов: {$score}.";
 $receipient = 'blackshadow1609@yandex.ru';
-$sender = 'PHPtest@PD411.academy';
+//$sender = 'PHPtest@PD411.academy';
+//$sender = 'www.blackshadow16@gmail.com';
+$sender = 'clayman@PD411.academy';
 
-$headers[] = "MIME-Version 1.0:\r\n";
-$headers .= "Content-type: text/html; charset=utf-8\r\n";
+//$headers[] = "MIME-Version 1.0:\r\n";
+//$headers .= "Content-type: text/html; charset=utf-8\r\n";
 //$headers .= "To: {$receipient}\r\n";
+
+$headers = "";
 $headers .= "From: {$sender}\r\n";
 
 
 echo '<div class="result">';
 echo $score_message;
+echo '<br>';
 echo mail($receipient, 'Результаты тестирования', $score_message, $headers);
 
 echo '</div>';
